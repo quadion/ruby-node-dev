@@ -1,0 +1,9 @@
+# Base our image on an official, minimal image of our preferred Ruby
+FROM ruby:2.4.2-slim-stretch
+
+# Install essential Linux packages for development plus node.js, npm and eslint
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends git build-essential curl libpq-dev default-libmysqlclient-dev cmake gnupg pkg-config chromium xvfb openssh-client && \
+    curl -sL https://deb.nodesource.com/setup_10.x | sh - && \
+    apt-get install -y --no-install-recommends nodejs && \
+    npm install -g eslint
